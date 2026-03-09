@@ -1,12 +1,12 @@
-import readline = require("readline-sync");
-import { colors } from "./src/util/Colors";
+import readline = require("readline-sync"); //Import do readline-sync para entrada de dados
+import { colors } from "./src/util/Colors"; //Import de cores
 
 export function main(){
     let opcao: number;
 
     while(true){
 
-        console.log(colors.bg.black, colors.fg.yellow,
+        console.log(colors.bg.black, colors.fg.yellow, 
                     "***************************************************");
         console.log("                                                   ");
         console.log("               BANCO DO BRAZIL COM Z               ");
@@ -104,12 +104,11 @@ export function sobre(): void {
     console.log("github.com/gcoutinhoo");
     console.log("*****************************************************");
 }
-
+// Função para aguardar o usuário pressionar enter antes de continuar
 function keyPress(): void {
     console.log(colors.reset, "");
     console.log("\nPressione enter para continuar...");
     readline.prompt();
 }
 
-main();
 main();
