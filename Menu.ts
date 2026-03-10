@@ -2,6 +2,7 @@ import readline = require("readline-sync"); //Import do readline-sync para entra
 import { colors } from "./src/util/Colors"; //Import de cores
 
 export function main(){
+    
     let opcao: number;
 
     while(true){
@@ -95,8 +96,7 @@ export function main(){
     }
 }
 
-/* Função com os dados da pessoa desenvolvedora */
-
+// Função com os dados da pessoa desenvolvedora 
 export function sobre(): void {
     console.log("\n*****************************************************");
     console.log("Projeto Desenvolvido por: ");
