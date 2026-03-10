@@ -1,9 +1,18 @@
 import readline = require("readline-sync"); //Import do readline-sync para entrada de dados
 import { colors } from "./src/util/Colors"; //Import de cores
+import { Conta } from "./src/model/Conta"; //Import da classe Conta
+
 
 export function main(){
     
     let opcao: number;
+
+    const conta: Conta = new Conta(1, 123, 1, "Adriana", 10000);
+    conta.visualizar();
+    conta.sacar(10500);
+    conta.visualizar();
+    conta.depositar(5000);
+    conta.visualizar();
 
     while(true){
 
