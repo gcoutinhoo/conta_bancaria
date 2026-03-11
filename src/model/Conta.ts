@@ -59,28 +59,27 @@ export class Conta {
     }
 
     public visualizar(): void{
-        let tipo: string = "";
-        
-        switch(this._tipo){
-            case 1: 
-                tipo = "Conta Corrente"
-            break;
+    let tipo: string = "";
+    
+    switch(this._tipo){
+        case 1: 
+            tipo = "Conta Corrente"
+        break;
 
-            case 2:
-                tipo = "Conta Polpança";
-            break;
-        }
-
-        console.log("\n\n***************************************************");
-        console.log("                 Dados da Conta:                   ");
-        console.log("***************************************************");
-        console.log(`         Número da Conta: ${this._numero}          `);
-        console.log(`         Agência: ${this._agencia}                 `);
-        console.log(`         Tipo da Conta: ${this._numero}            `);
-        console.log(`         Titular: ${this._titular}                 `);
-        console.log(`         Saldo: ${this._saldo.toFixed(2)}          `);
-         
+        case 2:
+            tipo = "Conta Poupança";
+        break;
     }
+
+    console.log("\n\n***************************************************");
+    console.log("                 Dados da Conta:                   ");
+    console.log("***************************************************");
+    console.log(`         Número da Conta: ${this._numero}`);
+    console.log(`         Agência: ${this._agencia}`);
+    console.log(`         Tipo da Conta: ${tipo}`);
+    console.log(`         Titular: ${this._titular}`);
+    console.log(`         Saldo: ${this._saldo.toFixed(2)}`);
+}
 
 
 }
