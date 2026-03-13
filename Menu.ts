@@ -40,8 +40,7 @@ export function main(){
         opcao = readline.questionInt("");
 
         if(opcao == 9){
-            console.log(colors.fg.whitestrong,
-                        "\nBanco do Brazil com Z - O seu futuro começa aqui!");
+            console.log(colors.fg.whitestrong, "\nBanco do Brazil com Z - O seu futuro começa aqui!");
             sobre();
             console.log(colors.reset, "");
             process.exit(0);
@@ -86,20 +85,60 @@ export function main(){
                 break;
 
             case 3:
-                console.log(colors.fg.whitestrong,
-                            "\n\nConsultar dados da Conta - por número\n\n", colors.reset);
+                console.log(colors.fg.whitestrong, "\n\nConsultar dados da Conta - por número\n\n", colors.reset);
+                console.log("Digite o número da Conta: ");
+                numero = readline.questionInt("");
+                contas.procurarPorNumero(numero);
+
                 keyPress();
                 break;
 
             case 4:
-                console.log(colors.fg.whitestrong,
-                            "\n\nAtualizar dados da Conta\n\n", colors.reset);
+                console.log(colors.fg.whitestrong,"\n\nAtualizar dados da Conta\n\n", colors.reset);
+                console.log("Digite o número da Conta: ");
+                numero = readline.questionInt("");
+
+                let conta = contas.buscarNoArray(numero);
+
+                if(conta != null){
+                    console.log("Digite o Número da Agência: ");
+                    agencia = readline.questionInt("");
+
+                    console.log("Digite o Nome do Titular da Conta: ");
+                    titular = readline.question("");
+
+                    console.log("Digite o tipo da Conta: ");
+                    tipo = readline.keyInSelect(tipoContas, "", {cancel: false}) + 1;
+
+                    console.log("Digite o Saldo da Conta (R$): ");
+                    saldo = readline.questionFloat("");
+
+                        switch(tipo){
+                            case 1: 
+                                console.log("Digite o limite da Conta (R$): ");
+                                limite = readline.questionFloat("");
+                                contas.atualizar(new ContaCorrente(numero, agencia, tipo, titular, saldo, limite));
+                            break;
+
+                            case 2: 
+                                console.log("Digite o Dia do aniversário da Conta Poupança: ");
+                                aniversario = readline.questionFloat("");
+                                contas.cadastrar(new ContaCorrente(numero, agencia, tipo, titular, saldo, aniversario));
+                            break;
+                        }
+                }else{
+                    console.log(colors.fg.red, `\n A Conta número: ${numero} não foi encontrada!`, colors.reset);
+                }
+                
                 keyPress();
                 break;
 
             case 5:
-                console.log(colors.fg.whitestrong,
-                            "\n\nApagar uma Conta\n\n", colors.reset);
+                console.log(colors.fg.whitestrong, "\n\nApagar uma Conta\n\n", colors.reset);
+                console.log("Digite o número da Conta: ");
+                numero = readline.questionInt("");
+                contas.deletar(numero);
+                
                 keyPress();
                 break;
 

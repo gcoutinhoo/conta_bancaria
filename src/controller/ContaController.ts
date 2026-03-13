@@ -13,7 +13,12 @@ export class ContaController implements ContaRepository {
         }
     }
     procurarPorNumero(numero: number): void {
-        throw new Error("Method not implemented.");
+        let buscarConta = this.buscarNoArray(numero);
+
+        if(buscarConta != null){
+            buscarConta.visualizar();
+        }else
+            console.log(colors.fg.red,`\nA Conta número: ${numero} não foi encontrada!`, colors.reset);
     }
 
     cadastrar(conta: Conta): void {
@@ -22,11 +27,21 @@ export class ContaController implements ContaRepository {
     }
 
     atualizar(conta: Conta): void {
-        throw new Error("Method not implemented.");
+        let buscarConta = this.buscarNoArray(conta.numero);
+        if(buscarConta != null){
+            this.listaContas[this.listaContas.indexOf(buscarConta)] = conta;
+            console.log(colors.fg.green, `\nA Conta número: ${conta.numero} foi atualizada com sucesso!`, colors.reset);
+        }else
+            console.log(colors.fg.red, `\nA Conta número: ${conta.numero} não foi encontrada!!`, colors.reset);
     }
 
     deletar(numero: number): void {
-        throw new Error("Method not implemented.");
+        let buscarConta = this.buscarNoArray(numero);
+        if(buscarConta != null){
+            this.listaContas.slice(this.listaContas.indexOf(buscarConta),1);
+            console.log(colors.fg.green, `\nA Conta número: ${numero} foi apagada com sucesso!`, colors.reset);
+        }else
+            console.log(colors.fg.red, `\nA Conta número: ${numero} não foi encontrada!!`, colors.reset);
     }
 
     sacar(numero: number, valor: number): void {
@@ -43,5 +58,15 @@ export class ContaController implements ContaRepository {
 
     public gerarNumero(): number{
         return ++ this.numero;
+    }
+
+ //Checar se uma conta existente
+    public buscarNoArray(numero: number): Conta | null{
+        for(let conta of this.listaContas){
+            if(conta.numero === numero){
+                return conta;
+            }
+        }
+        return null;
     }
 }
